@@ -32,9 +32,21 @@ $ brew install mpg123
 🍺  /usr/local/Cellar/mpg123/1.25.0: 26 files, 765.2KB
 ```
 
+On Linux, installation of mpg123 is either:
+
+```bash
+sudo apt-get install mpg123
+```
+
+or
+
+```bash
+$ sudo yum install mpg123
+```
+
 ## Converting mp3 to wav files
 
-Now, that we have mpg123 installed, we can use it to convert an .mp3 to a .wav file. Go into the directory where you have saved the `ahhh.mp3` file using the `cd` command and list at the files with `ls`:
+Now, that we have mpg123 installed, we can use it to convert an .mp3 to a .wav file. Go into the directory where you have saved the `ahhh.mp3` file using the `cd` (change directory) command and list at the files with `ls`:
 
 ```bash
 $ cd /Users/YOURID/msan501/labs/sound
@@ -91,16 +103,16 @@ ImportError                               Traceback (most recent call last)
 ImportError: No module named soundfile
 ```
 
-The key is that at the `import` statement, we get the error `No module named soundfile`.  That should not wreck your day--it just means we have to install that package.
+The key is that at the `import` statement, we get the error `No module named soundfile`.  That shouldn't wreck your day--it just means we have to install that package.
 
-To install Python packages, we use the `pip` program. Normally this program does what we want quickly and easily, but a number of things can go wrong. The most common is that your `pip` program does not match up with the `ipython` or `python` program. First verify that they appear to be coming from the same `bin` directory using `which`:
+To install Python packages, we use the `pip` (or, later, `conda`) program. Normally this program does what we want quickly and easily, but a number of things can go wrong. The most common is that your `pip` program does not match up with the `python` program. First verify that they appear to be coming from the same `bin` directory using `which`:
 
 ```bash
 $ which pip
 /Users/parrt/anaconda3/bin/pip
 $ which python
 /Users/parrt/anaconda3/bin/python
-beast:master:~/github/msan501/notes/sound $ which python3
+$ which python3
 /Users/parrt/anaconda3/bin/python3
 ```
 
@@ -142,9 +154,9 @@ This time, we do not get an error at the `import` statement.
 
 ## Playing sounds with Python
 
-At this point, you have converted a file so it can be used by our Python libraries and you have installed those Python libraries. In doing so, you used a number of commandline tools you should get very familiar with: `brew`, `pip`, `which`, `cd`, `ls`, `ipython`, etc...
+At this point, you have converted a file so it can be used by our Python libraries and you have installed those Python libraries. In doing so, you used a number of commandline tools you should get very familiar with: `brew`, `pip`, `which`, `cd`, `ls`, `python`, etc...
 
-It's time to pull all of this together into a simple Python program you can cut-and-paste to play a sound. Let's start with code to play the `Kiss.aiff` file.  Create a file called `play.py` in the same directory where your audio files are. You can use either PyCharm or another text editor. Here is the code:
+It's time to put all of this together into a simple Python program that you can cut-and-paste to play a sound. Let's start with code to play the `Kiss.aiff` file.  Create a file called `play.py` in the same directory where your audio files are. You can use `nano` or another text editor. Here is the code:
 
 ```python
 import soundfile as sf    # Use this package
@@ -155,7 +167,7 @@ sd.play(kiss, samplerate)                # start playing the music
 sd.wait()                                # wait until music finishes before exiting
 ```
 
-Run this program either in PyCharm or from the command line using:
+Run this program from the command line using:
 
 ```bash
 $ python play.py
@@ -171,9 +183,7 @@ kiss, samplerate = sf.read('ahhh.wav')
 
 Execute the program again and you should hear the other sound file play.
 
-The most common thing that is wrong if you're using PyCharm, is that PyCharm is not using the Anaconda Python installation for this file. Go to preferences (Settings) and then Project then Project Interpreter. Make sure you have selected the Anaconda Python.
-
-Either from the command line or from PyCharm, the most common error is not having the sound files in the same directory as the code.
+The most common error is not having the sound files in the same directory as the code.
 
 ## Generating our own sounds
 
@@ -292,6 +302,6 @@ You can find all of the code for this lab in the [msan501 class repository](http
 
 ## Summary
 
-Sound processing is a really fun fascinating topic, and you've just gotten a taste here. My hope is that this lab motivates you to dive into the details of programming so that you can learn to build these kinds of programs for yourself.
+Sound processing is a really fun fascinating topic, and you've just gotten a taste here. My hope is that this lab motivates you to dive into the details of programming so that you can learn to build these kinds of programs for yourself. In the first project, you'll learn about image processing where, you guessed it, everything is a number as well.
 
 You've also seen how to use the commandline to install other commandline programs and Python packages. This is something you will use again and again as you write more and more sophisticated programs.
